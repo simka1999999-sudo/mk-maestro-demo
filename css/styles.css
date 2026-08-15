@@ -13,9 +13,9 @@
   --bg-softer: #f5f5f5;
   --shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   --radius: 4px;
-  --container: 1120px;
-  --header-h: 88px;
-  --font: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --container: 1200px;
+  --header-h: 100px;
+  --font: "TildaSans", Arial, sans-serif;
 }
 
 *,
@@ -38,6 +38,7 @@ body {
   font-family: var(--font);
   color: var(--ink);
   background: var(--bg);
+  font-weight: 300;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
@@ -92,8 +93,9 @@ textarea {
 }
 
 .header__logo img {
-  width: 150px;
-  min-width: 110px;
+  width: 300px;
+  max-width: min(300px, 42vw);
+  height: auto;
 }
 
 .nav {
@@ -107,7 +109,7 @@ textarea {
   color: var(--white);
   text-decoration: none;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .nav a:hover,
@@ -222,17 +224,19 @@ textarea {
 }
 
 .hero h1 {
-  margin: 0 0 20px;
-  font-size: clamp(2.1rem, 5vw, 4rem);
-  line-height: 1.1;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  margin: 0 0 24px;
+  font-size: clamp(2.2rem, 5.2vw, 72px);
+  line-height: 1.17;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .hero p {
-  margin: 0 auto 28px;
-  max-width: 720px;
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  margin: 0 auto 32px;
+  max-width: 860px;
+  font-size: clamp(1.05rem, 1.8vw, 22px);
+  font-weight: 300;
+  line-height: 1.55;
 }
 
 .hero__arrow {
@@ -261,16 +265,17 @@ textarea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
-  padding: 12px 28px;
+  min-height: 60px;
+  min-width: 220px;
+  padding: 16px 36px;
   border: 0;
   border-radius: 3px;
   background: var(--accent);
   color: var(--white);
   text-decoration: none;
   text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  letter-spacing: 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
@@ -300,20 +305,22 @@ textarea {
 /* Sections */
 
 .section {
-  padding: clamp(64px, 10vw, 140px) 0;
+  padding: clamp(80px, 12vw, 180px) 0;
 }
 
 .section_tight {
-  padding: clamp(48px, 7vw, 90px) 0;
+  padding: clamp(64px, 10vw, 165px) 0;
 }
 
 .section h2,
-.block-title {
+.block-title,
+.author__text h2,
+.cover h2 {
   margin: 0 0 16px;
-  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
-  line-height: 1.15;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.8rem, 3.6vw, 42px);
+  line-height: 1.23;
+  font-weight: 600;
+  letter-spacing: 0;
   text-align: center;
 }
 
@@ -321,6 +328,9 @@ textarea {
   margin: 0 auto;
   max-width: 560px;
   text-align: center;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.55;
 }
 
 .split {
@@ -332,6 +342,9 @@ textarea {
 
 .split__text {
   max-width: 500px;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.55;
 }
 
 .split__text h2 {
@@ -357,8 +370,42 @@ textarea {
 
 .split__media img {
   width: 100%;
-  height: min(560px, 70vw);
+  height: 560px;
   object-fit: cover;
+}
+
+.author {
+  background: var(--white);
+}
+
+.author__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+}
+
+.author__photo img {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+}
+
+.author__text {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  text-align: center;
+  padding: 48px 32px;
+}
+
+.author__text h2 {
+  text-align: center;
+}
+
+.author__text p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 300;
 }
 
 .split__media_shot img {
@@ -416,7 +463,8 @@ textarea {
 
 .stack-item h3 {
   margin: 0 0 8px;
-  font-size: 1.15rem;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .stack-item__lead {
@@ -433,11 +481,15 @@ textarea {
 
 /* Program cards */
 
+#program h2 {
+  margin-bottom: 90px;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 48px 24px;
-  margin-top: 64px;
+  margin-top: 0;
 }
 
 .card {
@@ -453,12 +505,16 @@ textarea {
 
 .card h3 {
   margin: 0 0 12px;
-  font-size: 1.25rem;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.17;
 }
 
 .card p {
   margin: 0;
-  font-size: 0.98rem;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.55;
 }
 
 /* Price cover */
@@ -504,7 +560,7 @@ textarea {
 
 .price__now {
   font-size: clamp(2.6rem, 6vw, 4.2rem);
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1;
 }
 
@@ -683,11 +739,14 @@ textarea {
   display: flex;
 }
 
+.page-head .header__logo img {
+  width: 160px;
+}
+
 @media (max-width: 980px) {
   .header {
-    position: sticky;
-    top: 0;
-    background: var(--ink);
+    position: absolute;
+    background: transparent;
   }
 
   .header__inner {
@@ -701,16 +760,43 @@ textarea {
 
   .nav {
     display: none;
-    position: absolute;
-    inset: 72px 0 auto;
-    background: var(--ink);
-    padding: 16px 20px 24px;
-    flex-direction: column;
-    align-items: flex-start;
+  }
+
+  .header.is-open {
+    position: fixed;
+    inset: 0;
+    height: 100svh;
+    background: #000;
+  }
+
+  .header.is-open .header__inner {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+    justify-items: center;
+    padding-top: 28px;
+    padding-bottom: 40px;
   }
 
   .header.is-open .nav {
     display: flex;
+    position: static;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+    padding: 0;
+    gap: 28px;
+    font-size: 20px;
+  }
+
+  .header.is-open .header__socials {
+    justify-content: center;
+  }
+
+  .header.is-open .burger {
+    position: absolute;
+    top: 18px;
+    right: 12px;
   }
 
   .page-head .nav {
@@ -723,8 +809,18 @@ textarea {
 
   .split,
   .reviews,
-  .cards {
+  .cards,
+  .author__grid {
     grid-template-columns: 1fr;
+  }
+
+  .author__photo img,
+  .split__media img {
+    height: min(420px, 70vw);
+  }
+
+  #program h2 {
+    margin-bottom: 45px;
   }
 
   .split__text h2,
@@ -771,7 +867,7 @@ textarea {
 
 @media (max-width: 480px) {
   .header__logo img {
-    width: 110px;
+    width: 180px;
   }
 
   .price {
