@@ -5,7 +5,9 @@
 
   const setOpen = (open) => {
     header?.classList.toggle("is-open", open);
+    document.body.classList.toggle("is-nav-open", open);
     burger?.setAttribute("aria-expanded", String(open));
+    burger?.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
   };
 
   if (burger && header) {
@@ -18,9 +20,43 @@
     link.addEventListener("click", () => setOpen(false));
   });
 
+  header?.querySelector(".header__logo")?.addEventListener("click", () => setOpen(false));
+  header?.querySelector(".header__cta")?.addEventListener("click", () => setOpen(false));
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") setOpen(false);
   });
+
+  const onScroll = () => {
+    header?.classList.toggle("is-solid", window.scrollY > 24);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  const navLinks = [...(nav?.querySelectorAll(":scope > a") || [])];
+  const navSections = navLinks
+    .map((link) => {
+      const href = link.getAttribute("href") || "";
+      const el = href.startsWith("#") ? document.querySelector(href) : null;
+      return el ? { link, el } : null;
+    })
+    .filter(Boolean);
+
+  if (navSections.length && "IntersectionObserver" in window) {
+    const visible = new Map();
+    const ioNav = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => visible.set(entry.target, entry.isIntersecting));
+        let current = null;
+        navSections.forEach(({ link, el }) => {
+          if (visible.get(el)) current = link;
+        });
+        navLinks.forEach((link) => link.classList.toggle("is-active", link === current));
+      },
+      { rootMargin: "-40% 0px -50% 0px" }
+    );
+    navSections.forEach(({ el }) => ioNav.observe(el));
+  }
 
   const buy = document.querySelector("[data-sticky-buy]");
   const order = document.querySelector("#order");
