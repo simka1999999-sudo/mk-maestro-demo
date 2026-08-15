@@ -864,9 +864,117 @@ textarea {
   }
 }
 
+.stickies {
+  position: fixed;
+  right: 16px;
+  bottom: 20px;
+  z-index: 18;
+  display: grid;
+  gap: 10px;
+}
+
+.sticky {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #222;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+  text-decoration: none;
+}
+
+.sticky:hover,
+.sticky:focus-visible {
+  background: #111;
+  color: #fff;
+}
+
+.sticky_wa {
+  background: #25d366;
+}
+
+.sticky_wa:hover,
+.sticky_wa:focus-visible {
+  background: #1ebe5d;
+}
+
+.sticky_ig {
+  background: #e1306c;
+}
+
+.sticky_ig:hover,
+.sticky_ig:focus-visible {
+  background: #c13584;
+}
+
+.sticky_buy {
+  background: var(--accent);
+}
+
+.sticky_buy:hover,
+.sticky_buy:focus-visible {
+  background: var(--accent-hover);
+}
+
+.sticky::after {
+  content: attr(data-label);
+  position: absolute;
+  right: calc(100% + 10px);
+  padding: 6px 10px;
+  border-radius: 4px;
+  background: #111;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(6px);
+}
+
+.sticky:hover::after,
+.sticky:focus-visible::after {
+  opacity: 1;
+  transform: none;
+}
+
+.header.is-open ~ .stickies {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sticky_buy.is-away {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky::after {
+    transform: none;
+  }
+}
+
 @media (max-width: 480px) {
   .header__logo img {
     width: 56px;
+  }
+
+  .stickies {
+    right: 10px;
+    bottom: 12px;
+    gap: 8px;
+  }
+
+  .sticky {
+    width: 46px;
+    height: 46px;
+  }
+
+  .sticky::after {
+    display: none;
   }
 
   .price {

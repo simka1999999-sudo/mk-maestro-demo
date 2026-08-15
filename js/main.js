@@ -22,6 +22,18 @@
     if (event.key === "Escape") setOpen(false);
   });
 
+  const buy = document.querySelector("[data-sticky-buy]");
+  const order = document.querySelector("#order");
+  if (buy && order && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        buy.classList.toggle("is-away", entry.isIntersecting && entry.intersectionRatio > 0.2);
+      },
+      { threshold: [0.2, 0.4] }
+    );
+    io.observe(order);
+  }
+
   const form = document.querySelector("[data-order-form]");
   if (!form) return;
 
